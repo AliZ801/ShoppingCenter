@@ -8,6 +8,8 @@ namespace ShoppingCenter.DataAccess.Data.Repository.IRepository
     {
         ICategoryRepository Category { get; }
 
+        IProductTypeRepository ProductType { get; }
+
         void Save();
     }
 }

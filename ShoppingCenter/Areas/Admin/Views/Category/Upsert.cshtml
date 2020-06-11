@@ -1,7 +1,15 @@
 ﻿@model ShoppingCenter.Models.ViewModels.CategoryVM
 @{
-    ViewData["Title"] = "Upsert";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    @if(Model.Category.Id != 0)
+    {
+        ViewData["Title"] = "Edit Category";
+    }
+    else
+    {
+        ViewData["Title"] = "Create Category";
+    }
 
     var title = "Create Category";
 }

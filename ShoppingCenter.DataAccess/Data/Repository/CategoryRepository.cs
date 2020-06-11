@@ -1,4 +1,5 @@
-﻿using ShoppingCenter.DataAccess.Data.Repository.IRepository;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using ShoppingCenter.DataAccess.Data.Repository.IRepository;
 using ShoppingCenter.Models;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,15 @@ namespace ShoppingCenter.DataAccess.Data.Repository
         public CategoryRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public IEnumerable<SelectListItem> GetCategoryListForDropDown()
+        {
+            return _db.Category.Select(i => new SelectListItem()
+            {
+                Text = i.CatName,
+                Value = i.Id.ToString()
+            });
         }
 
         public void Update(Category category)

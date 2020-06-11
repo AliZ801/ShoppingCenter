@@ -15,5 +15,7 @@ namespace ShoppingCenter.DataAccess.Data
         }
 
         public DbSet<Category> Category { get; set; }
+
+        public DbSet<ProductType> ProductType { get; set; }
     }
 }
