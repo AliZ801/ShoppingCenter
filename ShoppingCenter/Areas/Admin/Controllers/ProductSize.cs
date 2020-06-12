@@ -9,14 +9,14 @@ using ShoppingCenter.Models.ViewModels;
 namespace ShoppingCenter.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class Category : Controller
+    public class ProductSize : Controller
     {
         private readonly IUnitofWork _unitofWork;
 
         [BindProperty]
         public CategoryVM categoryVM { get; set; }
 
-        public Category(IUnitofWork unitofWork)
+        public ProductSize(IUnitofWork unitofWork)
         {
             _unitofWork = unitofWork;
         }
@@ -28,11 +28,11 @@ namespace ShoppingCenter.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            categoryVM = new CategoryVM() { Category = new Models.Category() };
+            categoryVM = new CategoryVM() { ProductSize = new Models.ProductSize() };
 
             if(id != null)
             {
-                categoryVM.Category = _unitofWork.Category.Get(id.GetValueOrDefault());
+                categoryVM.ProductSize = _unitofWork.ProductSize.Get(id.GetValueOrDefault());
             }
 
             return View(categoryVM);
@@ -44,15 +44,13 @@ namespace ShoppingCenter.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(categoryVM.Category.Id == 0)
+                if(categoryVM.ProductSize.Id == 0)
                 {
-                    //Create Category
-                    _unitofWork.Category.Add(categoryVM.Category);
+                    _unitofWork.ProductSize.Add(categoryVM.ProductSize);
                 }
                 else
                 {
-                    //Update Category
-                    _unitofWork.Category.Update(categoryVM.Category);
+                    _unitofWork.ProductSize.update(categoryVM.ProductSize);
                 }
 
                 _unitofWork.Save();
@@ -69,24 +67,24 @@ namespace ShoppingCenter.Areas.Admin.Controllers
 
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitofWork.Category.GetAll() });
+            return Json(new { data = _unitofWork.ProductSize.GetAll() });
         }
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var catFromDb = _unitofWork.Category.Get(id);
+            var sizeFromDb = _unitofWork.ProductSize.Get(id);
 
-            if(catFromDb == null)
+            if(sizeFromDb == null)
             {
-                return Json(new { success = false, message = "Error while Deleting Category!" });
+                return Json(new { success = false, message = "Error Deleting Product Size!" });
             }
 
-            _unitofWork.Category.Remove(catFromDb);
+            _unitofWork.ProductSize.Remove(sizeFromDb);
 
             _unitofWork.Save();
 
-            return Json(new { success = true, message = "Category Deleted Successfully!" });
+            return Json(new { success = true, message = "Product Size Deleted Successfully!" });
         }
 
         #endregion

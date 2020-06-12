@@ -14,11 +14,14 @@ namespace ShoppingCenter.DataAccess.Data.Repository
             _db = db;
             Category = new CategoryRepository(_db);
             ProductType = new ProductTypeRepository(_db);
+            ProductSize = new ProductSizeRepository(_db);
         }
 
         public ICategoryRepository Category { get; private set; }
 
         public IProductTypeRepository ProductType { get; private set; }
+
+        public IProductSizeRepository ProductSize { get; private set; }
 
         public void Dispose()
         {

@@ -11,6 +11,12 @@ namespace ShoppingCenter.Models.ViewModels
 
         public ProductType ProductType { get; set; }
 
+        public ProductSize ProductSize { get; set; }
+
         public IEnumerable<SelectListItem> CategoryList { get; set; }
+
+        public IEnumerable<SelectListItem> ProductTypeList { get; set; }
+
+        public IEnumerable<SelectListItem> ProductSizeList { get; set; }
     }
 }

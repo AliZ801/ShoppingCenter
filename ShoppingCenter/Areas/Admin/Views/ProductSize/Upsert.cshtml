@@ -1,0 +1,72 @@
+﻿@model ShoppingCenter.Models.ViewModels.CategoryVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    @if (Model.ProductSize.Id != 0)
+    {
+        ViewData["Title"] = "Edit Product Size";
+    }
+    else
+    {
+        ViewData["Title"] = "Create Product Size";
+    }
+
+    var title = "Create Product Size";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 m-0 m-auto" style="border: 2px solid #004481">
+            <form method="post" asp-action="Upsert">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                @if (Model.ProductSize.Id != 0)
+                {
+                    <input type="hidden" asp-for="@Model.ProductSize.Id" />
+                    title = "Edit Product Size";
+                }
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3>@title</h3>
+                    </div>
+                </div>
+
+                <div class="row col-12 form-group">
+                    <div class="col-4">
+                        <label asp-for="@Model.ProductSize.Size"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.ProductSize.Size" class="form-control" />
+                        <span asp-validation-for="@Model.ProductSize.Size" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row col-12 form-group">
+                    @if (Model.ProductSize.Id != 0)
+                    {
+                        <partial name="_EditAndBackBtn" model="@Model.ProductSize.Id" />
+                    }
+                    else
+                    {
+                        <partial name="_CreateAndBackBtn" />
+                    }
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <style>
+        label {
+            font-weight: 400;
+        }
+
+        input[type=text] {
+            border: none;
+            border-bottom: 1px solid #0094ff;
+        }
+    </style>
+}
