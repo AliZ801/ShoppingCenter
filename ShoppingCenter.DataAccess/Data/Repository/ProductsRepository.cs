@@ -27,6 +27,7 @@ namespace ShoppingCenter.DataAccess.Data.Repository
             pFromDb.CategoryId = products.CategoryId;
             pFromDb.ProductTypeId = products.ProductTypeId;
             pFromDb.ProductSizeId = products.ProductSizeId;
+            pFromDb.Status = products.Status;
 
             _db.SaveChanges();
         }

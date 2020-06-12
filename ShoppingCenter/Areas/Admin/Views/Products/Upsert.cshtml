@@ -1,0 +1,175 @@
+﻿@model ShoppingCenter.Models.ViewModels.CategoryVM
+@using ShoppingCenter.Utility
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    @if (Model.Products.Id != 0)
+    {
+        ViewData["Title"] = "Edit Product";
+    }
+    else
+    {
+        ViewData["Title"] = "Create New Product";
+    }
+
+    var title = "Create New Product";
+}
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <div class="row px-2 mx-2 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        @if (Model.Products.Id != 0)
+        {
+            <input type="hidden" asp-for="@Model.Products.Id" />
+            title = "Edit Product";
+        }
+
+        <div class="col-12">
+            <h3>@title</h3>
+        </div>
+
+        <div class="col-9">
+
+            <!--Products Name-->
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="@Model.Products.Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="@Model.Products.Name" class="form-control" placeholder="Enter Name..." />
+                    <span asp-validation-for="@Model.Products.Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!--Products Category-->
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="@Model.Products.CategoryId"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(c => c.Products.CategoryId, Model.CategoryList, "--Select Product Category--", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <!--Products Type-->
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="@Model.Products.ProductTypeId"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(t => t.Products.ProductTypeId, Model.ProductTypeList, "--Select Product Type--", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <!--Products Size-->
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="@Model.Products.ProductSizeId"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(s => s.Products.ProductSizeId, Model.ProductSizeList, "--Product Size--", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <!--Products Price-->
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="@Model.Products.Price"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="@Model.Products.Price" id="txtPrice" class="form-control" placeholder="$ " />
+                    <span asp-validation-for="@Model.Products.Price" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!--Products Image-->
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="@Model.Products.ImageURL"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                </div>
+            </div>
+
+            <!--Products Status-->
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="@Model.Products.Status"></label>
+                </div>
+                <div class="col-8">
+                    <input type="radio" name="rdProductStatus" value="@SD.InStock" /> &nbsp; @SD.InStock
+                    <input type="radio" name="rdProductStatus" value="@SD.OutofStock" /> &nbsp; @SD.OutofStock
+                    <span asp-validation-for="@Model.Products.Status" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!--Products Description-->
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="@Model.Products.Description"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="@Model.Products.Description" class="form-control" style="height:300px;"></textarea>
+                    <span asp-validation-for="@Model.Products.Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!--Products Create, Edit and Back Button-->
+            <div class="row col-12 form-group">
+
+                @if (Model.Products.Id != 0)
+                {
+                    //Edit and Back Button
+                    <partial name="_EditAndBackBtn" model="Model.Products.Id" />
+                }
+                else
+                {
+                    //Create and Back Button
+                    <div class="col-2">
+                        <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control">Create</button>
+                    </div>
+                    <div class="col-3">
+                        <a asp-action="Index" class="btn btn-primary form-control">Back to List</a>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+        @if (Model.Products.Id != 0)
+        {
+            <div class="col-3">
+                <img src="@Model.Products.ImageURL" style="width:100%; border-radius:5px; border:1px solid #bbb9b9" />
+            </div>
+        }
+
+    </div>
+</form>
+
+@section Scripts{
+    <script src="https://cdn.tiny.cloud/1/bxrlcbdwcoxdkssuxkfwfnsm2ysoakvxhqc910edcz86m8e6/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists',
+            menubar: 'edit format'
+        });
+
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                swal("Error", "Please select an image", "error");
+                return false;
+            }
+            return true;
+        }
+
+        $(document).ready(function () {
+            if (document.getElementById('txtPrice').value == "0") {
+                document.getElementById('txtPrice').value = '';
+            }
+        })
+    </script>
+}

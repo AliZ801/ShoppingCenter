@@ -44,5 +44,8 @@ namespace ShoppingCenter.Models
 
         [ForeignKey("ProductSizeId")]
         public ProductSize ProductSize { get; set; }
+
+        [Required]
+        public string Status { get; set; }
     }
 }
