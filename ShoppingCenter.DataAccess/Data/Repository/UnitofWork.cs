@@ -15,6 +15,7 @@ namespace ShoppingCenter.DataAccess.Data.Repository
             Category = new CategoryRepository(_db);
             ProductType = new ProductTypeRepository(_db);
             ProductSize = new ProductSizeRepository(_db);
+            Products = new ProductsRepository(_db);
         }
 
         public ICategoryRepository Category { get; private set; }
@@ -22,6 +23,8 @@ namespace ShoppingCenter.DataAccess.Data.Repository
         public IProductTypeRepository ProductType { get; private set; }
 
         public IProductSizeRepository ProductSize { get; private set; }
+
+        public IProductsRepository Products { get; private set; }
 
         public void Dispose()
         {

@@ -19,5 +19,7 @@ namespace ShoppingCenter.DataAccess.Data
         public DbSet<ProductType> ProductType { get; set; }
 
         public DbSet<ProductSize> ProductSize { get; set; }
+
+        public DbSet<Products> Products { get; set; }
     }
 }

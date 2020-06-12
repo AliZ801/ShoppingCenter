@@ -12,6 +12,8 @@ namespace ShoppingCenter.DataAccess.Data.Repository.IRepository
 
         IProductSizeRepository ProductSize { get; }
 
+        IProductsRepository Products { get; }
+
         void Save();
     }
 }
