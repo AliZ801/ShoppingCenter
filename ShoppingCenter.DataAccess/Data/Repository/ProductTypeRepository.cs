@@ -1,4 +1,5 @@
-﻿using ShoppingCenter.DataAccess.Data.Repository.IRepository;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using ShoppingCenter.DataAccess.Data.Repository.IRepository;
 using ShoppingCenter.Models;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,20 @@ namespace ShoppingCenter.DataAccess.Data.Repository
             _db = db;
         }
 
+        public IEnumerable<SelectListItem> GetProductTypeListForDropDown()
+        {
+            return _db.ProductType.Select(i => new SelectListItem()
+            {
+                Text = i.Type,
+                Value = i.Id.ToString()
+            });
+        }
+
         public void Update(ProductType productType)
         {
             var pTypeFromDb = _db.ProductType.FirstOrDefault(t => t.Id == productType.Id);
 
             pTypeFromDb.Type = productType.Type;
-            pTypeFromDb.CategoryId = productType.CategoryId;
 
             _db.SaveChanges();
         }

@@ -41,7 +41,7 @@ namespace ShoppingCenter.DataAccess.Data.Repository
             //include Properties would be comma seperated
             if(includeProperties != null)
             {
-                foreach(var includeProperty in includeProperties.Split(new char[] { ','}, StringSplitOptions.RemoveEmptyEntries))
+                foreach(var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query.Include(includeProperty);
                 }

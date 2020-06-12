@@ -14,11 +14,5 @@ namespace ShoppingCenter.Models
         [Required]
         [Display(Name = "Product Type")]
         public string Type { get; set; }
-
-        [Required]
-        public int CategoryId { get; set; }
-
-        [ForeignKey("CategoryId")]
-        public Category Category { get; set; }
     }
 }

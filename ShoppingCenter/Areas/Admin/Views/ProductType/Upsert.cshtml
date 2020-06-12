@@ -43,19 +43,9 @@
                 </div>
 
                 <div class="row col-12 form-group">
-                    <div class="col-4">
-                        <label>Category Type</label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="@Model.ProductType.CategoryId" class="form-control" />
-                        <span asp-validation-for="@Model.ProductType.CategoryId" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="row col-12 form-group">
                     @if(Model.ProductType.Id != 0)
                     {
-                        <partial name="_EditAndBackBtn" model="@Model" />
+                        <partial name="_EditAndBackBtn" model="@Model.ProductType.Id" />
                     }
                     else
                     {

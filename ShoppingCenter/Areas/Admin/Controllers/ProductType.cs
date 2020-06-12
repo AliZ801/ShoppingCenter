@@ -70,7 +70,7 @@ namespace ShoppingCenter.Areas.Admin.Controllers
 
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitofWork.ProductType.GetAll(includeProperties:"Category") });
+            return Json(new { data = _unitofWork.ProductType.GetAll() });
         }
 
         [HttpDelete]
