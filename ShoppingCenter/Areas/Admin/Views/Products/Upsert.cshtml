@@ -48,7 +48,7 @@
                     <label asp-for="@Model.Products.CategoryId"></label>
                 </div>
                 <div class="col-8">
-                    @Html.DropDownListFor(c => c.Products.CategoryId, Model.CategoryList, "--Select Product Category--", new { @class = "form-control" })
+                    @Html.DropDownListFor(c => c.Products.CategoryId, Model.CategoryList, "---Select Product Category---", new { @class = "form-control"})
                 </div>
             </div>
 
@@ -58,7 +58,7 @@
                     <label asp-for="@Model.Products.ProductTypeId"></label>
                 </div>
                 <div class="col-8">
-                    @Html.DropDownListFor(t => t.Products.ProductTypeId, Model.ProductTypeList, "--Select Product Type--", new { @class = "form-control" })
+                    @Html.DropDownListFor(t => t.Products.ProductTypeId, Model.ProductTypeList, "---Select Product Type---", new { @class = "form-control" })
                 </div>
             </div>
 
@@ -68,7 +68,7 @@
                     <label asp-for="@Model.Products.ProductSizeId"></label>
                 </div>
                 <div class="col-8">
-                    @Html.DropDownListFor(s => s.Products.ProductSizeId, Model.ProductSizeList, "--Product Size--", new { @class = "form-control" })
+                    @Html.DropDownListFor(s => s.Products.ProductSizeId, Model.ProductSizeList, "---Select Product Size---", new { @class = "form-control" })
                 </div>
             </div>
 
