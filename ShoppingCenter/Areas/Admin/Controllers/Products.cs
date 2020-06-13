@@ -117,6 +117,13 @@ namespace ShoppingCenter.Areas.Admin.Controllers
             }
         }
 
+        public IActionResult Detail(int id)
+        {
+            var pFromDb = _unitofWork.Products.Get(id);
+
+            return View(pFromDb);
+        }
+
         #region API CALLS
 
         public IActionResult GetAll()

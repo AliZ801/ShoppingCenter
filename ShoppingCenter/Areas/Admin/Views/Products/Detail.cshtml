@@ -1,0 +1,26 @@
+﻿@model ShoppingCenter.Models.Products
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <img src="@Model.ImageURL" class="img-fluid" />
+        </div>
+        <div class="col-7">
+            <h5>@Model.Name</h5>
+            <br />
+            <h5>Price: @Model.Price.ToString("c")</h5>
+            <br />
+            <label>Category: @Model.Category.CatName</label>
+            <br />
+            <label>Type: @Model.ProductType.Type</label>
+            <br />
+            <label>Size: @Model.ProductSize.Size</label>
+            <br />
+            <p>@Html.Raw(Model.Description)</p>
+        </div>
+    </div>
+</div>
