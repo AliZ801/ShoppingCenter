@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-5">
-            <img src="@Model.ImageURL" class="img-fluid" />
+            <img src="@Model.ImageURL" class="img-fluid border" />
         </div>
         <div class="col-7">
             <h5>@Model.Name</h5>
@@ -21,6 +21,12 @@
             <label>Size: @Model.ProductSize.Size</label>
             <br />
             <p>@Html.Raw(Model.Description)</p>
+        </div>
+    </div>
+    <br />
+    <div class="row col-12">
+        <div class="col-3">
+            <a asp-action="Index" class="btn btn-primary text-white">Back to List</a>
         </div>
     </div>
 </div>
