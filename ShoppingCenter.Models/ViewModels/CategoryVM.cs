@@ -21,6 +21,6 @@ namespace ShoppingCenter.Models.ViewModels
 
         public IEnumerable<SelectListItem> ProductSizeList { get; set; }
 
-        public IEnumerable<SelectListItem> ProductsList { get; set; }
+        public IEnumerable<Products> ProductsList { get; set; }
     }
 }
