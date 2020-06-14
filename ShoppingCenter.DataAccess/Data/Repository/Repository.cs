@@ -33,21 +33,21 @@ namespace ShoppingCenter.DataAccess.Data.Repository
         {
             IQueryable<T> query = dbSet;
 
-            if(filter != null)
+            if (filter != null)
             {
-                query.Where(filter);
+                query = query.Where(filter);
             }
 
-            //include Properties would be comma seperated
-            if(includeProperties != null)
+            //include properties will be comma seperated
+            if (includeProperties != null)
             {
-                foreach(var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query.Include(includeProperty);
+                    query = query.Include(includeProperty);
                 }
             }
 
-            if(orderBy != null)
+            if (orderBy != null)
             {
                 return orderBy(query).ToList();
             }
@@ -61,15 +61,15 @@ namespace ShoppingCenter.DataAccess.Data.Repository
 
             if (filter != null)
             {
-                query.Where(filter);
+                query = query.Where(filter);
             }
 
-            //include Properties would be comma seperated
+            //include properties will be comma seperated
             if (includeProperties != null)
             {
                 foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query.Include(includeProperty);
+                    query = query.Include(includeProperty);
                 }
             }
 

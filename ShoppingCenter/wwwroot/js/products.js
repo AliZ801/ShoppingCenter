@@ -14,9 +14,9 @@ function loadDataTable() {
             datatype: "json"
         },
         "columns": [
-            { "data": "id", "width": "10%" },
+            { "data": "id", "width": "8%" },
             { "data": "name", "width": "30%" },
-            { "data": "productType.type", "width": "20%" },
+            { "data": "productType.type", "width": "15%" },
             { "data": "category.catName", "width": "15%" },
             { "data": "price", "width": "12%" },
             {
@@ -36,7 +36,7 @@ function loadDataTable() {
                                 </a>
                             </div>`;
                 },
-                "width": "13%"
+                "width": "20%"
             }
         ],
         "language": {

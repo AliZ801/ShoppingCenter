@@ -99,8 +99,7 @@
                     <label asp-for="@Model.Products.Status"></label>
                 </div>
                 <div class="col-8">
-                    <input type="radio" name="rdProductStatus" value="@SD.InStock" /> &nbsp; @SD.InStock
-                    <input type="radio" name="rdProductStatus" value="@SD.OutofStock" /> &nbsp; @SD.OutofStock
+                    <input asp-for="@Model.Products.Status" class="form-control" />
                     <span asp-validation-for="@Model.Products.Status" class="text-danger"></span>
                 </div>
             </div>

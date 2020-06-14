@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using ShoppingCenter.DataAccess.Data.Repository.IRepository;
 using ShoppingCenter.Models.ViewModels;
 
@@ -58,16 +61,16 @@ namespace ShoppingCenter.Areas.Admin.Controllers
                 string webRootPath = _hostEnvironment.WebRootPath;
                 var files = HttpContext.Request.Form.Files;
 
-                if(categoryVM.Products.Id != 0)
+                if(categoryVM.Products.Id == 0)
                 {
                     //New Product
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(webRootPath, @"Images\Products\");
                     var extension = Path.GetExtension(files[0].FileName);
 
-                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName+extension), FileMode.Create))
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName+extension), FileMode.Create))
                     {
-                        files[0].CopyTo(fileStream);
+                        files[0].CopyTo(fileStreams);
                     }
 
                     categoryVM.Products.ImageURL = @"\Images\Products\" + fileName + extension;
@@ -76,23 +79,16 @@ namespace ShoppingCenter.Areas.Admin.Controllers
                 }
                 else
                 {
-                    //Update Product
+                    //Edit Product
                     var pFromDb = _unitofWork.Products.Get(categoryVM.Products.Id);
 
-                    if (files.Count > 0)
+                    if(files.Count > 0)
                     {
                         string fileName = Guid.NewGuid().ToString();
-                        var uploads = Path.Combine(webRootPath, @"Images\Products\");
-                        var extension_new = Path.GetExtension(files[0].FileName);
+                        var uploads = Path.Combine(webRootPath, @"\Images\Services\");
+                        var extension_new = Path.Combine(files[0].FileName);
 
-                        var imagePath = Path.Combine(webRootPath, pFromDb.ImageURL.TrimStart('\\'));
-
-                        if (System.IO.File.Exists(imagePath))
-                        {
-                            System.IO.File.Delete(imagePath);
-                        }
-
-                        using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension_new), FileMode.Create))
+                        using (var fileStreams = new FileStream(Path.Combine(uploads, fileName+extension_new), FileMode.Create))
                         {
                             files[0].CopyTo(fileStreams);
                         }
@@ -113,13 +109,17 @@ namespace ShoppingCenter.Areas.Admin.Controllers
             }
             else
             {
+                categoryVM.CategoryList = _unitofWork.Category.GetCategoryListForDropDown();
+                categoryVM.ProductTypeList = _unitofWork.ProductType.GetProductTypeListForDropDown();
+                categoryVM.ProductSizeList = _unitofWork.ProductSize.GetProductSizeForDropDownList();
+
                 return View(categoryVM);
             }
         }
 
         public IActionResult Detail(int id)
         {
-            var pFromDb = _unitofWork.Products.Get(id);
+            var pFromDb = _unitofWork.Products.GetFirstOrDefault(includeProperties: "Category,ProductType,ProductSize", filter: p => p.Id == id);
 
             return View(pFromDb);
         }
@@ -128,7 +128,31 @@ namespace ShoppingCenter.Areas.Admin.Controllers
 
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitofWork.Products.GetAll() });
+            return Json(new { data = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType") });
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var pFromDb = _unitofWork.Products.Get(id);
+            string webRootPath = _hostEnvironment.WebRootPath;
+            var imagePath = Path.Combine(webRootPath, pFromDb.ImageURL.TrimStart('\\'));
+
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }
+
+            if(pFromDb == null)
+            {
+                return Json(new { success = false, message = "Error Deleting Product!" });
+            }
+
+            _unitofWork.Products.Remove(pFromDb);
+
+            _unitofWork.Save();
+
+            return Json(new { success = true, message = "Product Deleted Successfully!" });
         }
 
         #endregion
