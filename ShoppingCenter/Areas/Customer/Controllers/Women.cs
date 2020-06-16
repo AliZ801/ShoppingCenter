@@ -9,14 +9,14 @@ using ShoppingCenter.Models.ViewModels;
 namespace ShoppingCenter.Areas.Customer.Controllers
 {
     [Area("Customer")]
-    public class MenController : Controller
+    public class Women : Controller
     {
-        public readonly IUnitofWork _unitofWork;
+        private readonly IUnitofWork _unitofWork;
 
         [BindProperty]
         public CategoryVM categoryVM { get; set; }
 
-        public MenController(IUnitofWork unitofWork)
+        public Women(IUnitofWork unitofWork)
         {
             _unitofWork = unitofWork;
         }
@@ -25,7 +25,7 @@ namespace ShoppingCenter.Areas.Customer.Controllers
         {
             categoryVM = new CategoryVM()
             {
-                ProductsList = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType,ProductSize")
+                ProductsList = _unitofWork.Products.GetAll(includeProperties: "ProductType,ProductSize")
             };
 
             return View(categoryVM);
@@ -36,10 +36,8 @@ namespace ShoppingCenter.Areas.Customer.Controllers
             categoryVM = new CategoryVM()
             {
                 Products = _unitofWork.Products.GetFirstOrDefault(includeProperties: "ProductType,ProductSize", filter: p => p.Id == id),
-                ProductsList = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType,ProductSize")
+                ProductsList = _unitofWork.Products.GetAll(includeProperties: "ProductType,ProductSize")
             };
-
-            //var pFromDb = _unitofWork.Products.GetFirstOrDefault(includeProperties: "Category,ProductType,ProductSize", filter: p => p.Id == id);
 
             return View(categoryVM);
         }
