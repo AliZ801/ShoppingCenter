@@ -25,7 +25,7 @@ namespace ShoppingCenter.Areas.Customer.Controllers
         {
             categoryVM = new CategoryVM()
             {
-                ProductsList = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType,ProductSize")
+                ProductsList = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType,ProductSize", filter: p => p.Category.CatName == "Men")
             };
 
             return View(categoryVM);
@@ -39,7 +39,55 @@ namespace ShoppingCenter.Areas.Customer.Controllers
                 ProductsList = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType,ProductSize")
             };
 
-            //var pFromDb = _unitofWork.Products.GetFirstOrDefault(includeProperties: "Category,ProductType,ProductSize", filter: p => p.Id == id);
+            return View(categoryVM);
+        }
+
+        public IActionResult TShirts()
+        {
+            categoryVM = new CategoryVM()
+            {
+                ProductsList = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType,ProductSize", filter: p => p.ProductType.Type == "T-Shirts" && p.Category.CatName == "Men")
+            };
+
+            return View(categoryVM);
+        }
+
+        public IActionResult Shirts()
+        {
+            categoryVM = new CategoryVM()
+            {
+                ProductsList = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType,ProductSize", filter: p => p.ProductType.Type == "Shirts" && p.Category.CatName == "Men")
+            };
+
+            return View(categoryVM);
+        }
+
+        public IActionResult Pants()
+        {
+            categoryVM = new CategoryVM()
+            {
+                ProductsList = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType,ProductSize", filter: p => p.ProductType.Type == "Pants" && p.Category.CatName == "Men")
+            };
+
+            return View(categoryVM);
+        }
+
+        public IActionResult Shoes()
+        {
+            categoryVM = new CategoryVM()
+            {
+                ProductsList = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType,ProductSize", filter: p => p.ProductType.Type == "Shoes" && p.Category.CatName == "Men")
+            };
+
+            return View(categoryVM);
+        }
+
+        public IActionResult Assessories()
+        {
+            categoryVM = new CategoryVM()
+            {
+                ProductsList = _unitofWork.Products.GetAll(includeProperties: "Category,ProductType,ProductSize", filter: p => p.ProductType.Type == "Assessories" && p.Category.CatName == "Men")
+            };
 
             return View(categoryVM);
         }

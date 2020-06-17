@@ -35,6 +35,12 @@ namespace ShoppingCenter
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IUnitofWork, UnitofWork>();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
@@ -55,6 +61,9 @@ namespace ShoppingCenter
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 

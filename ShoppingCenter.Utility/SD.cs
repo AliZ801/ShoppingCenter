@@ -6,7 +6,6 @@ namespace ShoppingCenter.Utility
 {
     public static class SD
     {
-        public const string InStock = "In Stock";
-        public const string OutofStock = "Out of Stock";
+        public const string SessionCart = "Cart";
     }
 }
