@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCenter.DataAccess.Data.Repository.IRepository;
 using ShoppingCenter.Models.ViewModels;
@@ -9,6 +10,7 @@ using ShoppingCenter.Models.ViewModels;
 namespace ShoppingCenter.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class ProductSize : Controller
     {
         private readonly IUnitofWork _unitofWork;

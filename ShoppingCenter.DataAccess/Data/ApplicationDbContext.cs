@@ -21,5 +21,7 @@ namespace ShoppingCenter.DataAccess.Data
         public DbSet<ProductSize> ProductSize { get; set; }
 
         public DbSet<Products> Products { get; set; }
+
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

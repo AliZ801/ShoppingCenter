@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using ShoppingCenter.DataAccess.Data;
 using ShoppingCenter.DataAccess.Data.Repository.IRepository;
 using ShoppingCenter.DataAccess.Data.Repository;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ShoppingCenter.Utility;
 
 namespace ShoppingCenter
 {
@@ -35,6 +37,7 @@ namespace ShoppingCenter
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IUnitofWork, UnitofWork>();
+            services.AddSingleton<IEmailSender, EmailSender>();
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,6 +16,7 @@ using ShoppingCenter.Models.ViewModels;
 namespace ShoppingCenter.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class Products : Controller
     {
         private readonly IUnitofWork _unitofWork;

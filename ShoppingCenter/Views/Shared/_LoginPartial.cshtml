@@ -3,25 +3,73 @@
 @inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-white">
-                <i class="fas fa-sign-out-alt" style="color:white"></i> &nbsp; LOGOUT
-            </button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">
-            <i class="fas fa-sign-in-alt" style="color:white"></i> &nbsp; LOGIN
-        </a>
-    </li>
-}
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><span>Hello @User.Identity.Name!</span></a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-white"><i class="fas fa-sign-out-alt" style="color:white"></i> LOGOUT</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt" style="color:white"></i> LOGIN</a>
+        </li>
+    }
 </ul>
+
+@*<div class="row">
+    <ul class="navbar-nav">
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item">
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="nav-link text-white">Hello @User.Identity.Name!</a>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link text-white">
+                        <i class="fas fa-sign-out-alt" style="color:white"></i> &nbsp; LOGOUT
+                    </button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a asp-area="Identity" asp-page="/Account/Login" class="nav-link text-white">
+                    <i class="fas fa-sign-in-alt" style="color:white"></i> &nbsp; LOGIN
+                </a>
+            </li>
+        }
+
+    </ul>
+</div>*@
+
+@*<ul class="row navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a  class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        </li>
+        <li class="nav-item">
+            <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button  type="submit" class="nav-link btn btn-link text-white">
+                    <i class="fas fa-sign-out-alt" style="color:white"></i> &nbsp; LOGOUT
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">
+                <i class="fas fa-sign-in-alt" style="color:white"></i> &nbsp; LOGIN
+            </a>
+        </li>
+    }
+    </ul>*@

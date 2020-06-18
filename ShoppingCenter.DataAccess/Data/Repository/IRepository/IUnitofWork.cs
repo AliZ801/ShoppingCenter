@@ -14,6 +14,8 @@ namespace ShoppingCenter.DataAccess.Data.Repository.IRepository
 
         IProductsRepository Products { get; }
 
+        IUserRepository User { get; }
+
         void Save();
     }
 }
