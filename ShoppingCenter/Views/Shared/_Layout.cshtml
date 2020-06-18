@@ -63,6 +63,14 @@
                             <a class="nav-link text-dark" asp-area="Customer" asp-controller="Women" asp-action="Index">Women</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Boy" asp-action="Index">Boy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Girl" asp-action="Index">Girl</a>
+                        </li>
+
                         @if (HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)
                         {
                             <li class="nav-item">

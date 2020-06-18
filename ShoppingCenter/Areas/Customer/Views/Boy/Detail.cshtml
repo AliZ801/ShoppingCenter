@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @using ShoppingCenter.Extensions
+
 @{
     ViewData["Title"] = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,7 +11,7 @@
 
 <div class="d-flex flex-row justify-content-between">
     <div class="col-4 p-2">
-        <img src="@Model.Products.ImageURL" style="width:350px; height:400px;" />
+        <img src="@Model.Products.ImageURL" style="width:350px; height:400px" />
     </div>
     <div class="col-5 p-2">
         <h3>@Model.Products.Name</h3>
@@ -21,10 +22,10 @@
     </div>
     <div class="col-3 p-2 text-center border-left">
 
-        @{
+        @{ 
             var AddToCartEnabled = true;
 
-            if (HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)
+            @if(HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)
             {
                 var sessionList = HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart);
 
@@ -47,18 +48,21 @@
         <div class="text-muted">
             <p>Sample Text</p>
         </div>
+
     </div>
 </div>
 
 <br />
 <br />
 
-<h4>See Similar Products</h4>
+<h4>See Other Products</h4>
 <br />
+
 <div class="row col-12 d-flex flex-row text-center">
-    @foreach (var item in Model.ProductsList)
+
+    @foreach(var item in Model.ProductsList)
     {
-        @if (item.Category.CatName == "Men" && item.Id != Model.Products.Id)
+        @if(item.Id != Model.Products.Id)
         {
             <div class="card text-center mr-2" style="width:200px">
                 <div class="card-body">
@@ -68,4 +72,5 @@
             </div>
         }
     }
+
 </div>
