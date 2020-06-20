@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="col-12 text-right">
+                    <div class="col-12">
                         <partial name="_LoginPartial" />
                     </div>
                 </div>
@@ -55,31 +55,73 @@
                                     <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
                                     <a class="nav-link text-dark" asp-area="Admin" asp-controller="ProductType" asp-action="Index">Product Type</a>
                                     <a class="nav-link text-dark" asp-area="Admin" asp-controller="ProductSize" asp-action="Index">Product Size</a>
-                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a>
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Products List</a>
 
                                     @if (User.IsInRole(SD.Admin))
                                     {
                                         <a class="nav-link text-dark" asp-area="Admin" asp-controller="Users" asp-action="Index">Users List</a>
                                     }
 
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Order" asp-action="Index">Orders List</a>
+
                                 </div>
                             </li>
                         }
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Men" asp-action="Index">Men</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropDownMen" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Men
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropDownMen">
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Men" asp-action="TShirts">T-Shirts</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Men" asp-action="Shirts">Shirts</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Men" asp-action="Pants">Pants</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Men" asp-action="Shoes">Shoes</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Men" asp-action="Assessories">Assessories</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Men" asp-action="Index">View All</a>
+                            </div>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Women" asp-action="Index">Women</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropDownMen" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Women
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropDownMen">
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Women" asp-action="TShirts">T-Shirts</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Women" asp-action="Shirts">Shirts</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Women" asp-action="Pants">Pants</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Women" asp-action="Shoes">Shoes</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Women" asp-action="Assessories">Assessories</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Women" asp-action="Index">View All</a>
+                            </div>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Boy" asp-action="Index">Boy</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropDownMen" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Boys
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropDownMen">
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Boys" asp-action="TShirts">T-Shirts</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Boys" asp-action="Shirts">Shirts</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Boys" asp-action="Pants">Pants</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Boys" asp-action="Shoes">Shoes</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Boys" asp-action="Assessories">Assessories</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Boys" asp-action="Index">View All</a>
+                            </div>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Girl" asp-action="Index">Girl</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropDownMen" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Girls
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropDownMen">
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Girls" asp-action="TShirts">T-Shirts</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Girls" asp-action="Shirts">Shirts</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Girls" asp-action="Pants">Pants</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Girls" asp-action="Shoes">Shoes</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Girls" asp-action="Assessories">Assessories</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Girls" asp-action="Index">View All</a>
+                            </div>
                         </li>
 
                         @if (HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)

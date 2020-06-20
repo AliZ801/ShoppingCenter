@@ -23,5 +23,9 @@ namespace ShoppingCenter.DataAccess.Data
         public DbSet<Products> Products { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+
+        public DbSet<OrderHeader> OrderHeader { get; set; }
+
+        public DbSet<OrderDetails> OrderDetail { get; set; }
     }
 }

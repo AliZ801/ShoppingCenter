@@ -7,7 +7,7 @@
 }
 
 <div class="container row col-12">
-    <div class="row col-8 m-0 m-auto" style="border:2px solid #004481">
+    <div class="row col-8 m-0 m-auto rounded" style="border:2px solid #004481">
         <form method="post" asp-route-returnUrl="@Model.ReturnUrl" class="col-12">
             <div asp-validation-summary="All" class="text-danger"></div>
             <h4 class="text-center">Create New Account</h4>
@@ -76,36 +76,40 @@
                         <span asp-validation-for="Input.City" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="row col-12 form-group">
-                    <div class="col-4">
-                        <label>User Type</label>
+
+                @if (User.IsInRole(SD.Admin))
+                {
+                    <div class="row col-12 form-group">
+                        <div class="col-4">
+                            <label>User Type</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="radio" name="rdUserRole" value="@SD.Admin" />&nbsp; @SD.Admin
+                            &nbsp;
+                            <input type="radio" name="udUserRole" value="@SD.Manager" /> &nbsp; @SD.Manager
+                            &nbsp;
+                            <input type="radio" name="udUserRole" value="@SD.User" checked /> &nbsp; @SD.User
+                        </div>
                     </div>
-                    <div class="col-8">
-                        <input type="radio" name="rdUserRole" value="@SD.Admin" />&nbsp; @SD.Admin
-                        &nbsp;
-                        <input type="radio" name="udUserRole" value="@SD.Manager" /> &nbsp; @SD.Manager
-                        &nbsp;
-                        <input type="radio" name="udUserRole" value="@SD.User" checked /> &nbsp; @SD.User
+                }
+                else
+                {
+                    <div class="row col-12 form-group" hidden>
+                        <div class="col-4">
+                            <label>User Type</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="radio" name="udUserRole" value="@SD.User" checked /> &nbsp; @SD.User
+                        </div>
                     </div>
-                </div>
+                }
+
                 <div class="row col-12 form-group">
                     <div class="col-3">
                         <button type="submit" class="btn btn-primary text-white form-control">Register</button>
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
-</div>
-
-<br /><br /><br />
-<div class="row col-12 border">
-    <div class="row col-8 m-0 m-auto">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            
         </form>
     </div>
 </div>

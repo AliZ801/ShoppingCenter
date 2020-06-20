@@ -16,6 +16,10 @@ namespace ShoppingCenter.DataAccess.Data.Repository.IRepository
 
         IUserRepository User { get; }
 
+        IOrderHeaderReposiotry OrderHeader { get; }
+
+        IOrderDeatilsRepository OrderDetails { get; }
+
         void Save();
     }
 }

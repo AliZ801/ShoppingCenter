@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,10 @@ namespace ShoppingCenter.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View(_unitofWork.User.GetAll());
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            return View(_unitofWork.User.GetAll(u => u.Id != claims.Value));
         }
 
         public IActionResult Lock(string id)
